@@ -7,6 +7,8 @@ let pw2El = document.getElementById("pw2-el")
 let pwLengthEl = document.getElementById("pw-length-el")
 let pw1 = "";
 let pw2 = "";
+let symbolsBool = true
+let numbersBool = true
 
 function generatePW(){
     pw1 = "";
@@ -20,6 +22,26 @@ function generatePW(){
     }
     pw1El.textContent = pw1
     pw2El.textContent = pw2
+}
+
+function checkSymbols()
+{
+  let symbolsCheckBox = document.getElementById("symbols-el");
+  if (symbolsCheckBox.checked === true)
+      symbolsBool = true
+  else
+      symbolsBool = false
+    console.log(symbolsBool)
+}
+
+function checkNumbers()
+{
+  let numbersCheckBox = document.getElementById("numbers-el");
+  if (numbersCheckBox.checked === true)
+      numbersBool = true
+  else
+      numbersBool = false
+    console.log(numbersBool)
 }
 
 function copyToClipboard() {
