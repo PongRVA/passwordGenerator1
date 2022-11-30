@@ -60,9 +60,12 @@ function checkNumbers()
       numbersBool = false
 }
 
-function copyToClipboard() {
-    //navigator.clipboard.writeText(copyText.value);
-
+function copyPw1ToClipboard() {
     navigator.clipboard.writeText(pw1);
     alert("Copied the text: " + pw1);
 }
+function copyPw2ToClipboard() {
+    navigator.clipboard.writeText(pw2);
+    alert("Copied the text: " + pw2);
+}
+
