@@ -1,7 +1,9 @@
-const characters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
-                    "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z", 
-                    "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-                    "~","`","!","@","#","$","%","^","&","*","(",")","_","-","+","=","{","[","}","]",",","|",":",";","<",">",".","?","/"];
+const lettersArray = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S",                        "T","U","V","W","X","Y","Z",
+                      "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+                    
+const numbersArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+const symbolsArray = ["~","`","!","@","#","$","%","^","&","*","(",")","_","-","+","=","{","[","}","]",",","|",":",";","<",">",".","?","/"];
+let charactersArray = []
 
 let pwLength
 let pw1El = document.getElementById("pw1-el")
@@ -9,19 +11,33 @@ let pw2El = document.getElementById("pw2-el")
 let pwLengthEl = document.getElementById("pw-length-el")
 let pw1 = "";
 let pw2 = "";
-let symbolsBool = true
-let numbersBool = true
+let symbolsBool = false
+let numbersBool = false
 
 function generatePW(){
     pw1 = "";
     pw2 = "";
     pwLength = pwLengthEl.value
+    charactersArray = [];
+    //check which character arrays to combine
+    if (symbolsBool && numbersBool){
+        charactersArray = lettersArray.concat(numbersArray)
+        charactersArray = charactersArray.concat(symbolsArray)
+    }
+    else if (symbolsBool)
+        charactersArray = lettersArray.concat(symbolsArray)
+    else if (numbersBool)
+        charactersArray = lettersArray.concat(numbersArray)
+    else
+        charactersArray = lettersArray
+    //randomly create passwords    
     for (let i = 0; i < pwLength; i++){
-        pw1 += characters[Math.floor( Math.random() * characters.length)]    
+        pw1 += charactersArray[Math.floor( Math.random() * charactersArray.length)]    
     }
     for (let i = 0; i < pwLength; i++){
-        pw2 += characters[Math.floor( Math.random() * characters.length)]    
+        pw2 += charactersArray[Math.floor( Math.random() * charactersArray.length)]    
     }
+    //display passwords
     pw1El.textContent = pw1
     pw2El.textContent = pw2
 }
@@ -30,10 +46,9 @@ function checkSymbols()
 {
   let symbolsCheckBox = document.getElementById("symbols-el");
   if (symbolsCheckBox.checked === true)
-      symbolsBool = true
+    symbolsBool = true
   else
-      symbolsBool = false
-    console.log(symbolsBool)
+    symbolsBool = false
 }
 
 function checkNumbers()
@@ -43,13 +58,9 @@ function checkNumbers()
       numbersBool = true
   else
       numbersBool = false
-    console.log(numbersBool)
 }
 
-function copyToClipboard() {
-    navigator.clipboard.writeText(pw1);
+//function copyToClipboard() {
+//    navigator.clipboard.writeText(pw1);
     //alert("Copied the text: " + pw1);
-}
-
-
-
+//}
