@@ -60,7 +60,9 @@ function checkNumbers()
       numbersBool = false
 }
 
-//function copyToClipboard() {
-//    navigator.clipboard.writeText(pw1);
-    //alert("Copied the text: " + pw1);
-//}
+function copyToClipboard() {
+    //navigator.clipboard.writeText(copyText.value);
+
+    navigator.clipboard.writeText(pw1.value);
+    alert("Copied the text: " + pw1);
+}
