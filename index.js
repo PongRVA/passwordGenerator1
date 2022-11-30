@@ -63,6 +63,6 @@ function checkNumbers()
 function copyToClipboard() {
     //navigator.clipboard.writeText(copyText.value);
 
-    navigator.clipboard.writeText(pw1.value);
+    navigator.clipboard.writeText(pw1);
     alert("Copied the text: " + pw1);
 }
